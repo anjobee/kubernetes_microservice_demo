@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: users
+  template:
+    metadata:
+      labels:
+        app: users
+    spec:
+      containers:
+        - name: users
+          image: anjobihis/kub-demo-users:0.0.1
+          env:
+            - name: AUTH_ADDRESS
+              # value: 10.104.108.74
+              value: auth-service.default
